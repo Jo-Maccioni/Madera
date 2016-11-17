@@ -1,0 +1,3 @@
+madera_homepage:
+    path:     /
+    defaults: { _controller: MaderaBundle:Default:index }
