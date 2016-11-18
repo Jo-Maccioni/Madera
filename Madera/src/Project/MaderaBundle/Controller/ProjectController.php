@@ -4,25 +4,15 @@ namespace Project\MaderaBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class DevisController extends Controller
+class ProjectController extends Controller
 {
-    public function loginAction()
+    public function createProjectAction()
     {
-        return $this->render('MaderaBundle:Devis:connexion.html.twig');
+        return $this->render('MaderaBundle:Devis:newProject.html.twig');
     }
 
-    public function showDevisAction()
+    public function linkDevisAction()
     {
-        return $this->render('MaderaBundle:Devis:devis.html.twig');
-    }
-
-    public function indexAction()
-    {
-        return $this->render('MaderaBundle:Devis:index.html.twig');
-    }
-
-    public function createDevisAction()
-    {
-        return $this->render('MaderaBundle:Devis:newDevis.html.twig');
+        return $this->render('MaderaBundle:Devis:devisProjet.html.twig');
     }
 }
