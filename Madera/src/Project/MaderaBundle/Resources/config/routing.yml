@@ -1,3 +1,25 @@
-madera_homepage:
-    path:     /
-    defaults: { _controller: MaderaBundle:Default:index }
+madera_login:
+    path:     /login
+    defaults: { _controller: MaderaBundle:Devis:login }
+
+madera_devis:
+    path:     /devis/{id}
+    defaults: { _controller: MaderaBundle:Devis:showDevis }
+    requirements:
+        id: \d+
+
+madera_devis_projet:
+    path:     /link
+    defaults: { _controller: MaderaBundle:Project:linkDevis }
+
+madera_index:
+    path:     /index
+    defaults: { _controller: MaderaBundle:Devis:index }
+
+madera_new_devis:
+    path:     /create-devis
+    defaults: { _controller: MaderaBundle:Devis:createDevis }
+
+madera_new_project:
+    path:     /create-project
+    defaults: { _controller: MaderaBundle:Project:createProject }

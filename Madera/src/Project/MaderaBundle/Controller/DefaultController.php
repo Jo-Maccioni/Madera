@@ -6,8 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {
-    public function indexAction()
+    public function createProjectAction()
     {
-        return $this->render('MaderaBundle:Default:index.html.twig');
+        return $this->render('MaderaBundle:Devis:newProject.html.twig');
+    }
+
+    public function linkDevisAction()
+    {
+        return $this->render('MaderaBundle:Devis:devisProjet.html.twig');
     }
 }
