@@ -1,6 +1,6 @@
 madera_login:
     path:     /login
-    defaults: { _controller: MaderaBundle:Devis:login }
+    defaults: { _controller: AppBundle:Security:login }
 
 madera_devis:
     path:     /devis/{id}
