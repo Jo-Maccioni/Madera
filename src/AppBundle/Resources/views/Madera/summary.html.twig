@@ -1,0 +1,91 @@
+{% extends "::base.html.twig" %}
+
+
+{% block body %}
+	<body>
+		{% include "AppBundle:Madera:header.html.twig" %}
+		
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+					<a class="btn btn-success" href="newProject.php" style="width: 100%">Créer un projet</a>
+				</div>
+				
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+					<a class="btn btn-info" href="devisProjet.php" style="width: 100%">Créer un devis</a>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<h3>Liste des devis</h3>
+					
+					<div class="table-responsive">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>RefDevis</th>
+									<th>Date Devis</th>
+									<th>Nom Client</th>
+									<th>Montant devis</th>
+									<th>Date validité</th>
+									<th></th>
+								</tr>
+							</thead>
+							
+							<tbody>
+								<tr style="cursor: pointer" onclick="location.href='devis.php?refDevis=01245318'">
+									<td>01245318</td>
+									<td>18/01/2016</td>
+									<td>Cotel Alexis</td>
+									<td>179 562€</td>
+									<td>18/04/2016</td>
+									<td><i class="fa fa-pencil" aria-hidden="true"></i></td>
+								</tr>
+								<tr style="cursor: pointer" onclick="location.href='devis.php?refDevis=78512456'">
+									<td>78512456</td>
+									<td>22/02/2016</td>
+									<td>Ford Harrisson</td>
+									<td>165 478€</td>
+									<td>22/05/2016</td>
+									<td><i class="fa fa-pencil" aria-hidden="true"></i></td>
+								</tr>
+								<tr style="cursor: pointer" onclick="location.href='devis.php?refDevis=78521649'">
+									<td>78521649</td>
+									<td>24/02/2016</td>
+									<td>Hawk Tony</td>
+									<td>210 489€</td>
+									<td>24/05/2016</td>
+									<td><i class="fa fa-pencil" aria-hidden="true"></i></td>
+								</tr>
+								<tr style="cursor: pointer" onclick="location.href='devis.php?refDevis=98721647'">
+									<td>98721647</td>
+									<td>04/06/2016</td>
+									<td>Potter Harry</td>
+									<td>155 230€</td>
+									<td>04/09/2016</td>
+									<td><i class="fa fa-pencil" aria-hidden="true"></i></td>
+								</tr>
+								<tr style="cursor: pointer" onclick="location.href='devis.php?refDevis=85123497'">
+									<td>85123497</td>
+									<td>31/08/2016</td>
+									<td>Pauwels Guillaume</td>
+									<td>189 899€</td>
+									<td>30/11/2016</td>
+									<td><i class="fa fa-pencil" aria-hidden="true"></i></td>
+								</tr>
+								<tr style="cursor: pointer" onclick="location.href='devis.php?refDevis=45678917'">
+									<td>45678917</td>
+									<td>11/28/2016</td>
+									<td>Snow John</td>
+									<td>178 566€</td>
+									<td>02/28/2017</td>
+									<td><i class="fa fa-pencil" aria-hidden="true"></i></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endblock %}
