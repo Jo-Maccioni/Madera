@@ -22,6 +22,14 @@ class MaderaController extends Controller
         );
     }
 
+    /**
+     * @Route("/subscription", name="subscription")
+     */
+    public function subscriptionAction(Request $request)
+    {
+        return $this->render('AppBundle:Madera:subscription.html.twig');
+    }
+
 
     /**
     * @param Devis $entity
