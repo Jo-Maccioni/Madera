@@ -4,6 +4,8 @@ parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    app_bundle.manager.modele:
+        class: AppBundle\Manager\ModeleManager
+    app_bundle.form.modele:
+        class: AppBundle\Form\ModeleType
+        arguments: ['@app_bundle.manager.modele']

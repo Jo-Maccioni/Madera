@@ -1,0 +1,224 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+	<body>
+		{% include "AppBundle:Madera:header.html.twig" %}
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div style="float: left">
+						<h3 style="margin-top: 0px">Créer un nouveau devis</h3>
+					</div>
+				</div>
+			</div>
+			
+				<div class="row">
+					<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+						<div class="form-group">
+							<div class="col-sm-6 control-label">
+								{{ form_label(form.nameDevis) }}
+							</div>
+							<div class="col-sm-6">
+								{{ form_widget(form.nameDevis, { 'attr' : { 'class' : 'form-control' } }) }}
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+						<div class="form-group">
+							<div class="col-sm-6 control-label">
+								{{ form_label(form.dateDevis) }}
+							</div>
+							<div class="col-sm-6">
+								{{ form_widget(form.dateDevis, { 'attr' : { 'class' : 'form-control' } }) }}
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+						<div class="form-group">
+							<div class="col-sm-6 control-label">
+								{{ form_label(form.client) }}
+							</div>
+							<div class="col-sm-6">
+								{{ form_widget(form.client, { 'attr' : { 'class' : 'form-control' } }) }}
+							</div>
+						</div>
+					</div>
+				</div>
+			
+				<div class="row">
+					<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+						<div class="form-group">
+							<div class="col-sm-6 control-label">
+								{{ form_label(form.gamme) }}
+							</div>
+							<div class="col-sm-6">
+								{{ form_widget(form.gamme, { 'attr' : { 'class' : 'form-control' } }) }}
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+						<div class="form-group">
+							<div class="col-sm-6 control-label">
+								{{ form_label(form.modele.nameModele) }}
+							</div>
+							<div class="col-sm-6">
+								{{ form_widget(form.modele.nameModele, { 'attr' : { 'class' : 'form-control' } }) }}
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+						<a class="btn btn-primary btn-sm" style="width: 100%" id="btnSelectModele">Modifier</a>
+					</div>
+					
+					<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" id="divSelectModele" style="display: none">
+						<div class="form-group">
+							<div class="col-sm-6 control-label">
+								{{ form_label(form.modele.remplissage.nameRemplissage) }}
+							</div>
+							<div class="col-sm-6">
+								{{ form_widget(form.modele.remplissage.nameRemplissage, { 'attr' : { 'class' : 'form-control' } }) }}
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-sm-6 control-label">
+								{{ form_label(form.modele.finition.finitionINT) }}
+							</div>
+							<div class="col-sm-6">
+								{{ form_widget(form.modele.finition.finitionINT, { 'attr' : { 'class' : 'form-control' } }) }}
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-sm-6 control-label">
+								{{ form_label(form.modele.finition.finitionEXT) }}
+							</div>
+							<div class="col-sm-6">
+								{{ form_widget(form.modele.finition.finitionEXT, { 'attr' : { 'class' : 'form-control' } }) }}
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+						<div class="form-group">
+							<div class="col-sm-6 control-label">
+								{{ form_label(form.coupe) }}
+							</div>
+							<div class="col-sm-6">
+								{{ form_widget(form.coupe, { 'attr' : { 'class' : 'form-control' } }) }}
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+						<div class="form-group">
+							<div class="col-sm-6 control-label">
+								{{ form_label(form.module.nameModule) }}
+							</div>
+							<div class="col-sm-6">
+								{{ form_widget(form.module.nameModule, { 'attr' : { 'class' : 'form-control' } }) }}
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+						<a class="btn btn-primary btn-sm" style="width: 100%; margin-bottom: 10px" id="editModule">Modifier</a>
+					</div>					
+					<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" id="divModule" style="display: none">
+						<div class="form-group">
+							<div class="col-sm-6 control-label">
+								{{ form_label(form.module.section) }}
+							</div>
+							<div class="col-sm-6">
+								{{ form_widget(form.module.section, { 'attr' : { 'class' : 'form-control' } }) }}
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-sm-6 control-label">
+								{{ form_label(form.module.longueur) }}
+							</div>
+							<div class="col-sm-6">
+								{{ form_widget(form.module.longueur, { 'attr' : { 'class' : 'form-control' } }) }}
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-sm-6 control-label">
+								{{ form_label(form.module.angleEntrant) }}
+							</div>
+							<div class="col-sm-6">
+								{{ form_widget(form.module.angleEntrant, { 'attr' : { 'class' : 'form-control' } }) }}
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-6 control-label">
+								{{ form_label(form.module.angleSortant) }}
+							</div>
+							<div class="col-sm-6">
+								{{ form_widget(form.module.angleSortant, { 'attr' : { 'class' : 'form-control' } }) }}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+						<div class="form-group">
+							<div class="col-sm-6 control-label">
+								{{ form_label(form.amount) }}
+							</div>
+							<div class="col-sm-6">
+								{{ form_widget(form.amount, { 'attr' : { 'class' : 'form-control' } }) }}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row" style="margin-top: 30px">
+					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
+					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+						{# <button class="btn btn-success btn-sm" href="{{ path('save_devis') }}" style="width: 100%">Envoyer pour validation</button> #}
+					</div>
+				</div>
+		</div>
+		
+		<script>
+			$(document).ready(function(){
+				$('#btnSelectModele').click(function(){
+					$('#divSelectModele').toggle("slow");
+				});
+				
+				$('#showModule').click(function(){
+					$('#divModule').toggle("slow");
+				});
+
+				$('#editModule').click(function(){
+					$('#divModule').toggle("slow");
+				});
+
+				$('#selectModule').on("change", function(){
+
+					if($('#divModule').css('display') != 'none')
+					{
+						$('#divModule').hide("slow");
+					}
+					var data = $("#selectModule option:selected").attr("id");
+				});
+			});
+				var test = $("#selectModule option:selected").attr("id");
+		</script>
+	</body>
+	{% endblock %}

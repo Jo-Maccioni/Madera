@@ -62,6 +62,42 @@ class Devis
      */
     private $client;
 
+    /**
+     * @var integer
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Gamme")
+     * @ORM\JoinColumn(name="gamme_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     */
+    protected $gamme;
+
+    /**
+     * @var integer
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Modele")
+     * @ORM\JoinColumn(name="modele_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     */
+    protected $modele;
+
+    /**
+     * @var integer
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Coupe")
+     * @ORM\JoinColumn(name="coupe_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     */
+    protected $coupe;
+
+    /**
+     * @var integer
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Module")
+     * @ORM\JoinColumn(name="module_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     */
+    protected $module;
+
+    public function __toString()
+    {
+        return (string) $this->getGamme();
+    }
 
     /**
      * Get id
@@ -215,5 +251,101 @@ class Devis
     public function getValidatedDateDevis()
     {
         return $this->validatedDateDevis;
+    }
+
+    /**
+     * Set gamme
+     *
+     * @param \AppBundle\Entity\Gamme $gamme
+     *
+     * @return Devis
+     */
+    public function setGamme(\AppBundle\Entity\Gamme $gamme = null)
+    {
+        $this->gamme = $gamme;
+
+        return $this;
+    }
+
+    /**
+     * Get gamme
+     *
+     * @return \AppBundle\Entity\Gamme
+     */
+    public function getGamme()
+    {
+        return $this->gamme;
+    }
+
+    /**
+     * Set modele
+     *
+     * @param \AppBundle\Entity\Modele $modele
+     *
+     * @return Devis
+     */
+    public function setModele(\AppBundle\Entity\Modele $modele = null)
+    {
+        $this->modele = $modele;
+
+        return $this;
+    }
+
+    /**
+     * Get modele
+     *
+     * @return \AppBundle\Entity\Modele
+     */
+    public function getModele()
+    {
+        return $this->modele;
+    }
+
+    /**
+     * Set coupe
+     *
+     * @param \AppBundle\Entity\Coupe $coupe
+     *
+     * @return Devis
+     */
+    public function setCoupe(\AppBundle\Entity\Coupe $coupe = null)
+    {
+        $this->coupe = $coupe;
+
+        return $this;
+    }
+
+    /**
+     * Get coupe
+     *
+     * @return \AppBundle\Entity\Coupe
+     */
+    public function getCoupe()
+    {
+        return $this->coupe;
+    }
+
+    /**
+     * Set module
+     *
+     * @param \AppBundle\Entity\Module $module
+     *
+     * @return Devis
+     */
+    public function setModule(\AppBundle\Entity\Module $module = null)
+    {
+        $this->module = $module;
+
+        return $this;
+    }
+
+    /**
+     * Get module
+     *
+     * @return \AppBundle\Entity\Module
+     */
+    public function getModule()
+    {
+        return $this->module;
     }
 }

@@ -35,6 +35,39 @@ class Module
      */
     private $nameModule;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="section", type="string", length=255)
+     */
+    private $section;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="longueur", type="string", length=255)
+     */
+    private $longueur;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="angleEntrant", type="string", length=255)
+     */
+    private $angleEntrant;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="angleSortant", type="string", length=255)
+     */
+    private $angleSortant;
+
+
+    public function __toString()
+    {
+        return (string) $this->getNameModule();
+    }
 
     /**
      * Get id
@@ -93,5 +126,100 @@ class Module
     {
         return $this->nameModule;
     }
-}
 
+    /**
+     * Set section
+     *
+     * @param string $section
+     *
+     * @return Module
+     */
+    public function setSection($section)
+    {
+        $this->section = $section;
+
+        return $this;
+    }
+
+    /**
+     * Get section
+     *
+     * @return string
+     */
+    public function getSection()
+    {
+        return $this->section;
+    }
+
+    /**
+     * Set longueur
+     *
+     * @param string $longueur
+     *
+     * @return Module
+     */
+    public function setLongueur($longueur)
+    {
+        $this->longueur = $longueur;
+
+        return $this;
+    }
+
+    /**
+     * Get longueur
+     *
+     * @return string
+     */
+    public function getLongueur()
+    {
+        return $this->longueur;
+    }
+
+    /**
+     * Set angleEntrant
+     *
+     * @param string $angleEntrant
+     *
+     * @return Module
+     */
+    public function setAngleEntrant($angleEntrant)
+    {
+        $this->angleEntrant = $angleEntrant;
+
+        return $this;
+    }
+
+    /**
+     * Get angleEntrant
+     *
+     * @return string
+     */
+    public function getAngleEntrant()
+    {
+        return $this->angleEntrant;
+    }
+
+    /**
+     * Set angleSortant
+     *
+     * @param string $angleSortant
+     *
+     * @return Module
+     */
+    public function setAngleSortant($angleSortant)
+    {
+        $this->angleSortant = $angleSortant;
+
+        return $this;
+    }
+
+    /**
+     * Get angleSortant
+     *
+     * @return string
+     */
+    public function getAngleSortant()
+    {
+        return $this->angleSortant;
+    }
+}

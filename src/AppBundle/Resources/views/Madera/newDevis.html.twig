@@ -1,64 +1,27 @@
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>MADERA</title>
-		
-		<!-- CSS boostrap -->
-		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-		<!-- theme boostrap -->
-		<link rel="stylesheet" href="bootstrap/css/themes/flatly.min.css">
+{% extends "::base.html.twig" %}
 
-		<!-- JS boostrap -->
-		<script src="bootstrap/js/jquery.js"></script>
-		<script src="bootstrap/js/bootstrap.min.js"></script>
-	</head>
-	
+{% block body %}
 	<body>
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="index.php">MADERA</a>
-				</div>
-
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<li><a href="#">test</a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-		
+		{% include "AppBundle:Madera:header.html.twig" %}
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div style="float: left">
 						<h3 style="margin-top: 0px">Créer un nouveau devis</h3>
 					</div>
-					
-					<div style=" float: right; margin-top: 4px">
-						<label style="margin-right: 30px">Ref projet - Nom du projet</label>
-						<label>Ref client - Nom, prénom, adresse</label>
-					</div>
 				</div>
 			</div>
 			
-			<form class="form-horizontal" method="post" action="">
+			<form class="form-horizontal" method="post" action="{{ path('save_devis') }}">
 				<div class="row">
 					<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
 						<div class="form-group">
 							<label for="selectGamme" class="col-sm-6 control-label">Selection de la gamme</label>
 							<div class="col-sm-6">
 								<select class="form-control" id="selectGamme" name="selectGamme">
-									<option value="gamme1">Gamme 1</option>
-									<option value="gamme2">Gamme 2</option>
-									<option value="gamme3">Gamme 3</option>
-									<option value="gamme4">Gamme 4</option>
+									{% for gamme in gammeList %}
+										<option value="{{ gamme.id }}">{{ gamme.nameGamme }}</option>
+									{% endfor %}
 								</select>
 							</div>
 						</div>
@@ -71,10 +34,9 @@
 							<label for="selectModele" class="col-sm-6 control-label">Selection d'un modèle</label>
 							<div class="col-sm-6">
 								<select class="form-control" id="selectModele" name="selectModele">
-									<option value="modele1">Modèle 1</option>
-									<option value="modele2">Modèle 2</option>
-									<option value="modele3">Modèle 3</option>
-									<option value="modele4">Modèle 4</option>
+									{% for modele in modeleList %}
+										<option value="{{ modele.id }}">{{ modele.nameModele }}</option>
+									{% endfor %}
 								</select>
 							</div>
 						</div>
@@ -89,10 +51,9 @@
 							<label for="selectRemplissage" class="col-sm-4 control-label">Type de remplissage</label>
 							<div class="col-sm-4">
 								<select class="form-control" id="selectRemplissage" name="selectRemplissage">
-									<option value="remplissage1">Remplissage 1</option>
-									<option value="remplissage1">Remplissage 2</option>
-									<option value="remplissage1">Remplissage 3</option>
-									<option value="remplissage1">Remplissage 4</option>
+									{% for remplissage in remplissageList %}
+										<option value="{{ remplissage.id }}">{{ remplissage.nameRemplissage }}</option>
+									{% endfor %}
 								</select>
 							</div>
 						</div>
@@ -101,10 +62,9 @@
 							<label for="selectFinitionInt" class="col-sm-4 control-label">Finition intérieure</label>
 							<div class="col-sm-4">
 								<select class="form-control" id="selectFinitionInt" name="selectFinitionInt">
-									<option value="finitionInt1">Finition int 1</option>
-									<option value="finitionInt2">Finition int 2</option>
-									<option value="finitionInt3">Finition int 3</option>
-									<option value="finitionInt4">Finition int 4</option>
+									{% for finitionInt in finitionIntList %}
+										<option value="{{ finitionInt.id }}">{{ finitionInt.nameFinition }}</option>
+									{% endfor %}
 								</select>
 							</div>
 						</div>
@@ -113,10 +73,9 @@
 							<label for="selectFinitionInt" class="col-sm-4 control-label">Finition extérieure</label>
 							<div class="col-sm-4">
 								<select class="form-control" id="selectFinitionInt" name="selectFinitionInt">
-									<option value="finitionExt1">Finition ext 1</option>
-									<option value="finitionExt2">Finition ext 2</option>
-									<option value="finitionExt3">Finition ext 3</option>
-									<option value="finitionExt4">Finition ext 4</option>
+									{% for finitionExt in finitionExtList %}
+										<option value="{{ finitionExt.id }}">{{ finitionExt.nameFinition }}</option>
+									{% endfor %}
 								</select>
 							</div>
 						</div>
@@ -129,10 +88,9 @@
 							<label for="selectCoupe" class="col-sm-6 control-label">Selection de la coupe de principe</label>
 							<div class="col-sm-6">
 								<select class="form-control" id="selectCoupe" name="selectCoupe">
-									<option value="coupe1">Coupe 1</option>
-									<option value="coupe2">Coupe 2</option>
-									<option value="coupe3">Coupe 3</option>
-									<option value="coupe4">Coupe 4</option>
+									{% for coupe in coupeList %}
+										<option value="{{ coupe.id }}">{{ coupe.nameCoupe }}</option>
+									{% endfor %}
 								</select>
 							</div>
 						</div>
@@ -145,25 +103,17 @@
 							<label for="selectModule" class="col-sm-6 control-label">Selection des modules</label>
 							<div class="col-sm-6">
 								<select class="form-control" id="selectModule" name="selectModule">
-									<option value="module1">Module 1</option>
-									<option value="module2">Module 2</option>
-									<option value="module3">Module 3</option>
-									<option value="module4">Module 4</option>
+									{% for module in moduleList %}
+										<option id="selectedModule{{module.id}}" value="{{ module.id }}">{{ module.nameModule }}</option>
+									{% endfor %}
 								</select>
 							</div>
 						</div>
 					</div>
 					
 					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-						<a class="btn btn-primary btn-sm" style="width: 100%; margin-bottom: 10px" id="createModule">Créer</a>
-						<br />
-						<a class="btn btn-primary btn-sm" style="width: 100%" id="editModule">Modifier</a>
-					</div>
-					
-					<!--<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-						<a class="btn btn-primary btn-sm" style="width: 100%">Modifier</a>
-					</div>-->
-					
+						<a class="btn btn-primary btn-sm" style="width: 100%; margin-bottom: 10px" id="editModule">Modifier</a>
+					</div>					
 					<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" id="divModule" style="display: none">
 						<div class="form-group">
 							<label for="section" class="col-sm-4 control-label">Section</label>
@@ -193,11 +143,10 @@
 						</div>
 					</div>
 				</div>
-				
 				<div class="row" style="margin-top: 30px">
 					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
 					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-						<button class="btn btn-success btn-sm" style="width: 100%">Envoyer pour validation</button>
+						<button class="btn btn-success btn-sm" href="{{ path('save_devis') }}" style="width: 100%">Envoyer pour validation</button>
 					</div>
 				</div>
 			</form>
@@ -209,14 +158,24 @@
 					$('#divSelectModele').toggle("slow");
 				});
 				
-				$('#createModule').click(function(){
+				$('#showModule').click(function(){
 					$('#divModule').toggle("slow");
 				});
-				
+
 				$('#editModule').click(function(){
 					$('#divModule').toggle("slow");
 				});
+
+				$('#selectModule').on("change", function(){
+
+					if($('#divModule').css('display') != 'none')
+					{
+						$('#divModule').hide("slow");
+					}
+					var data = $("#selectModule option:selected").attr("id");
+				});
 			});
+				var test = $("#selectModule option:selected").attr("id");
 		</script>
 	</body>
-</html>
+	{% endblock %}

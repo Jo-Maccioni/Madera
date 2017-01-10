@@ -35,6 +35,26 @@ class Modele
      */
     private $nameModele;
 
+    /**
+     * @var integer
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Remplissage")
+     * @ORM\JoinColumn(name="remplissage_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     */
+    protected $remplissage;
+
+    /**
+     * @var integer
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Finition")
+     * @ORM\JoinColumn(name="finition_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     */
+    protected $finition;
+
+    public function __toString()
+    {
+        return (string) $this->getNameModele();
+    }
 
     /**
      * Get id
@@ -93,5 +113,52 @@ class Modele
     {
         return $this->nameModele;
     }
-}
 
+    /**
+     * Set remplissage
+     *
+     * @param \AppBundle\Entity\Remplissage $remplissage
+     *
+     * @return Modele
+     */
+    public function setRemplissage(\AppBundle\Entity\Remplissage $remplissage = null)
+    {
+        $this->remplissage = $remplissage;
+
+        return $this;
+    }
+
+    /**
+     * Get remplissage
+     *
+     * @return \AppBundle\Entity\Remplissage
+     */
+    public function getRemplissage()
+    {
+        return $this->remplissage;
+    }
+
+    /**
+     * Set finition
+     *
+     * @param \AppBundle\Entity\Finition $finition
+     *
+     * @return Modele
+     */
+    public function setFinition(\AppBundle\Entity\Finition $finition = null)
+    {
+        $this->finition = $finition;
+
+        return $this;
+    }
+
+    /**
+     * Get finition
+     *
+     * @return \AppBundle\Entity\Finition
+     */
+    public function getFinition()
+    {
+        return $this->finition;
+    }
+}

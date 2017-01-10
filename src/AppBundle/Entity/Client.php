@@ -63,6 +63,11 @@ class Client
      */
     private $codePostal;
 
+
+    public function __toString()
+    {
+        return (string) $this->getPrenomClient() . ' ' . $this->getNomClient();
+    }
     /**
      * Get id
      *
