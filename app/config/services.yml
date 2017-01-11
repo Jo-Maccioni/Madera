@@ -6,6 +6,20 @@ parameters:
 services:
     app_bundle.manager.modele:
         class: AppBundle\Manager\ModeleManager
-    app_bundle.form.modele:
-        class: AppBundle\Form\ModeleType
-        arguments: ['@app_bundle.manager.modele']
+        arguments:
+            - "@doctrine.orm.entity_manager"
+        tags:
+            - {name: manager.service}
+    app_bundle.manager.module:
+        class: AppBundle\Manager\ModuleManager
+        arguments:
+            - "@doctrine.orm.entity_manager"
+        tags:
+            - {name: manager.service}
+    app_bundle.form.devis:
+        class: AppBundle\Form\DevisType
+        arguments: 
+            - "@app_bundle.manager.modele"
+            - "@app_bundle.manager.module"
+        tags:
+            - {name: form.type}

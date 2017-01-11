@@ -1,8 +1,11 @@
 {% extends "::base.html.twig" %}
 
+{% trans_default_domain "Madera" %}
+
 {% block body %}
 	<body>
 		{% include "AppBundle:Madera:header.html.twig" %}
+		{{ form_start(form) }}
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -68,10 +71,10 @@
 					<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
 						<div class="form-group">
 							<div class="col-sm-6 control-label">
-								{{ form_label(form.modele.nameModele) }}
+								{{ form_label(form.modele) }}
 							</div>
 							<div class="col-sm-6">
-								{{ form_widget(form.modele.nameModele, { 'attr' : { 'class' : 'form-control' } }) }}
+								{{ form_widget(form.modele, { 'attr' : { 'class' : 'form-control' } }) }}
 							</div>
 						</div>
 					</div>
@@ -83,28 +86,28 @@
 					<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" id="divSelectModele" style="display: none">
 						<div class="form-group">
 							<div class="col-sm-6 control-label">
-								{{ form_label(form.modele.remplissage.nameRemplissage) }}
+								{{ form_label(form.modeleName.remplissage.nameRemplissage) }}
 							</div>
 							<div class="col-sm-6">
-								{{ form_widget(form.modele.remplissage.nameRemplissage, { 'attr' : { 'class' : 'form-control' } }) }}
+								{{ form_widget(form.modeleName.remplissage.nameRemplissage, { 'attr' : { 'class' : 'form-control' } }) }}
 							</div>
 						</div>
 						
 						<div class="form-group">
 							<div class="col-sm-6 control-label">
-								{{ form_label(form.modele.finition.finitionINT) }}
+								{{ form_label(form.modeleName.finition.finitionINT) }}
 							</div>
 							<div class="col-sm-6">
-								{{ form_widget(form.modele.finition.finitionINT, { 'attr' : { 'class' : 'form-control' } }) }}
+								{{ form_widget(form.modeleName.finition.finitionINT, { 'attr' : { 'class' : 'form-control' } }) }}
 							</div>
 						</div>
 						
 						<div class="form-group">
 							<div class="col-sm-6 control-label">
-								{{ form_label(form.modele.finition.finitionEXT) }}
+								{{ form_label(form.modeleName.finition.finitionEXT) }}
 							</div>
 							<div class="col-sm-6">
-								{{ form_widget(form.modele.finition.finitionEXT, { 'attr' : { 'class' : 'form-control' } }) }}
+								{{ form_widget(form.modeleName.finition.finitionEXT, { 'attr' : { 'class' : 'form-control' } }) }}
 							</div>
 						</div>
 					</div>
@@ -127,10 +130,10 @@
 					<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
 						<div class="form-group">
 							<div class="col-sm-6 control-label">
-								{{ form_label(form.module.nameModule) }}
+								{{ form_label(form.module) }}
 							</div>
 							<div class="col-sm-6">
-								{{ form_widget(form.module.nameModule, { 'attr' : { 'class' : 'form-control' } }) }}
+								{{ form_widget(form.module, { 'attr' : { 'class' : 'form-control' } }) }}
 							</div>
 						</div>
 					</div>
@@ -141,36 +144,36 @@
 					<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" id="divModule" style="display: none">
 						<div class="form-group">
 							<div class="col-sm-6 control-label">
-								{{ form_label(form.module.section) }}
+								{{ form_label(form.moduleName.section) }}
 							</div>
 							<div class="col-sm-6">
-								{{ form_widget(form.module.section, { 'attr' : { 'class' : 'form-control' } }) }}
+								{{ form_widget(form.moduleName.section, { 'attr' : { 'class' : 'form-control' } }) }}
 							</div>
 						</div>
 						
 						<div class="form-group">
 							<div class="col-sm-6 control-label">
-								{{ form_label(form.module.longueur) }}
+								{{ form_label(form.moduleName.longueur) }}
 							</div>
 							<div class="col-sm-6">
-								{{ form_widget(form.module.longueur, { 'attr' : { 'class' : 'form-control' } }) }}
+								{{ form_widget(form.moduleName.longueur, { 'attr' : { 'class' : 'form-control' } }) }}
 							</div>
 						</div>
 						
 						<div class="form-group">
 							<div class="col-sm-6 control-label">
-								{{ form_label(form.module.angleEntrant) }}
+								{{ form_label(form.moduleName.angleEntrant) }}
 							</div>
 							<div class="col-sm-6">
-								{{ form_widget(form.module.angleEntrant, { 'attr' : { 'class' : 'form-control' } }) }}
+								{{ form_widget(form.moduleName.angleEntrant, { 'attr' : { 'class' : 'form-control' } }) }}
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-sm-6 control-label">
-								{{ form_label(form.module.angleSortant) }}
+								{{ form_label(form.moduleName.angleSortant) }}
 							</div>
 							<div class="col-sm-6">
-								{{ form_widget(form.module.angleSortant, { 'attr' : { 'class' : 'form-control' } }) }}
+								{{ form_widget(form.moduleName.angleSortant, { 'attr' : { 'class' : 'form-control' } }) }}
 							</div>
 						</div>
 					</div>
@@ -188,13 +191,11 @@
 					</div>
 				</div>
 				<div class="row" style="margin-top: 30px">
-					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
-					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-						{# <button class="btn btn-success btn-sm" href="{{ path('save_devis') }}" style="width: 100%">Envoyer pour validation</button> #}
+					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">						
+							{{ form_row(form.save, { 'attr' : { 'class' : 'btn btn-success btn-sm' } }) }}
 					</div>
 				</div>
-		</div>
-		
+		</div>		
 		<script>
 			$(document).ready(function(){
 				$('#btnSelectModele').click(function(){
