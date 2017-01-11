@@ -16,7 +16,6 @@
 				</div>
 			</div>
 		</nav>
-		{{ dump("tttt") }}
 		
 		<div class="container-fluid">
 			<div class="row">
@@ -33,21 +32,21 @@
 							</div>
 							<div class="panel-body">
 								<div class="form-group">
-									<label for="login" class="col-sm-2 control-label">{{ 'security.login.username'|trans }}</label>
-									<div class="col-sm-10">
+									<label for="login" class="col-sm-4 control-label">{{ 'security.login.username'|trans }}</label>
+									<div class="col-sm-8">
 										<input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" placeholder="Username" required="required" />
 									</div>
 								</div>
 								
 								<div class="form-group">
-									<label for="inputPassword3" class="col-sm-2 control-label">{{ 'security.login.password'|trans }}</label>
-									<div class="col-sm-10">
+									<label for="inputPassword3" class="col-sm-4 control-label">{{ 'security.login.password'|trans }}</label>
+									<div class="col-sm-8">
 										<input type="password" class="form-control" id="password" placeholder="Password" name="_password" required="required" />
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="remember_me" class="col-sm-4 control-label" style="text-align:left">{{ 'security.login.remember_me'|trans }}</label>
-									<div class="col-sm-8">
+									<label for="remember_me" class="col-sm-6 control-label" style="text-align:left">{{ 'security.login.remember_me'|trans }}</label>
+									<div class="col-sm-6">
 										<input type="checkbox" id="remember_me" name="_remember_me" value="on" style="width: 20px; height: 20px;"/>
 									</div>
 								</div>
