@@ -57,7 +57,7 @@ class Devis
     private $validatedDateDevis;
 
     /**
-     * @ORM\OneToOne(targetEntity="Client")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Client")
      * @ORM\JoinColumn(name="client_id", referencedColumnName="id")
      */
     private $client;
@@ -93,6 +93,14 @@ class Devis
      * @ORM\JoinColumn(name="module_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     protected $module;
+
+    /**
+     * @var integer
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Projet", inversedBy="devis")
+     * @ORM\JoinColumn(name="projet_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     */
+    protected $projet;
 
     public function __toString()
     {
@@ -347,5 +355,29 @@ class Devis
     public function getModule()
     {
         return $this->module;
+    }
+
+    /**
+     * Set projet
+     *
+     * @param \AppBundle\Entity\Projet $projet
+     *
+     * @return Devis
+     */
+    public function setProjet(\AppBundle\Entity\Projet $projet = null)
+    {
+        $this->projet = $projet;
+
+        return $this;
+    }
+
+    /**
+     * Get projet
+     *
+     * @return \AppBundle\Entity\Projet
+     */
+    public function getProjet()
+    {
+        return $this->projet;
     }
 }

@@ -34,7 +34,7 @@
 							{% for devis in devisList %}
 								<tr>
 									<td>{% if devis.refDevis is not empty %}{{ devis.refDevis }}{% endif %}</td>
-									<td>{% if devis.dateDevis is not empty %}{{ devis.dateDevis|date("m/d/Y") }}{% endif %}</td>
+									<td>{% if devis.dateDevis is not empty %}{{ devis.dateDevis|date("d/m/Y") }}{% endif %}</td>
 									<td>{% if devis.client.prenomClient is not empty %}{{ devis.client.prenomClient }} {{ devis.client.nomClient }}{% endif %}</td>
 									<td>{% if devis.amount is not empty %}{{ devis.amount|number_format(2, ',', ' ') }} €{% endif %}</td>
 									<td>{% if devis.validatedDateDevis is not empty %}{{ devis.validatedDateDevis|date("m/d/Y") }}{% endif %}</td>

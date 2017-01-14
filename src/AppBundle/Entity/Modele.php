@@ -46,10 +46,18 @@ class Modele
     /**
      * @var integer
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Finition")
-     * @ORM\JoinColumn(name="finition_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\FinitionInterieur")
+     * @ORM\JoinColumn(name="finition_interieur_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
-    protected $finition;
+    protected $finitionInterieur;
+
+    /**
+     * @var integer
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\FinitionExterieur")
+     * @ORM\JoinColumn(name="finition_exterieur_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     */
+    protected $finitionExterieur;
 
     public function __toString()
     {
@@ -121,7 +129,7 @@ class Modele
      *
      * @return Modele
      */
-    public function setRemplissage(\AppBundle\Entity\Remplissage $remplissage = null)
+    public function setRemplissage($remplissage)
     {
         $this->remplissage = $remplissage;
 
@@ -139,26 +147,50 @@ class Modele
     }
 
     /**
-     * Set finition
+     * Set finitionInterieur
      *
-     * @param \AppBundle\Entity\Finition $finition
+     * @param \AppBundle\Entity\FinitionInterieur $finitionInterieur
      *
      * @return Modele
      */
-    public function setFinition(\AppBundle\Entity\Finition $finition = null)
+    public function setFinitionInterieur(\AppBundle\Entity\FinitionInterieur $finitionInterieur = null)
     {
-        $this->finition = $finition;
+        $this->finitionInterieur = $finitionInterieur;
 
         return $this;
     }
 
     /**
-     * Get finition
+     * Get finitionInterieur
      *
-     * @return \AppBundle\Entity\Finition
+     * @return \AppBundle\Entity\FinitionInterieur
      */
-    public function getFinition()
+    public function getFinitionInterieur()
     {
-        return $this->finition;
+        return $this->finitionInterieur;
+    }
+
+    /**
+     * Set finitionExterieur
+     *
+     * @param \AppBundle\Entity\FinitionExterieur $finitionExterieur
+     *
+     * @return Modele
+     */
+    public function setFinitionExterieur(\AppBundle\Entity\FinitionExterieur $finitionExterieur = null)
+    {
+        $this->finitionExterieur = $finitionExterieur;
+
+        return $this;
+    }
+
+    /**
+     * Get finitionExterieur
+     *
+     * @return \AppBundle\Entity\FinitionExterieur
+     */
+    public function getFinitionExterieur()
+    {
+        return $this->finitionExterieur;
     }
 }

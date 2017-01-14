@@ -1,8 +1,11 @@
 {% extends "::base.html.twig" %}
 
+{% trans_default_domain "Madera" %}
+
 {% block body %}
 	<body>
 		{% include "AppBundle:Madera:header.html.twig" %}
+		{{ form_start(form) }}
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -12,17 +15,53 @@
 				</div>
 			</div>
 			
-			<form class="form-horizontal" method="post" action="{{ path('save_devis') }}">
 				<div class="row">
 					<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
 						<div class="form-group">
-							<label for="selectGamme" class="col-sm-6 control-label">Selection de la gamme</label>
+							<div class="col-sm-6 control-label">
+								{{ form_label(form.nameDevis) }}
+							</div>
 							<div class="col-sm-6">
-								<select class="form-control" id="selectGamme" name="selectGamme">
-									{% for gamme in gammeList %}
-										<option value="{{ gamme.id }}">{{ gamme.nameGamme }}</option>
-									{% endfor %}
-								</select>
+								{{ form_widget(form.nameDevis, { 'attr' : { 'class' : 'form-control' } }) }}
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+						<div class="form-group">
+							<div class="col-sm-6 control-label">
+								{{ form_label(form.dateDevis) }}
+							</div>
+							<div class="col-sm-6">
+								{{ form_widget(form.dateDevis, { 'attr' : { 'class' : 'form-control' } }) }}
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+						<div class="form-group">
+							<div class="col-sm-6 control-label">
+								{{ form_label(form.client) }}
+							</div>
+							<div class="col-sm-6">
+								{{ form_widget(form.client, { 'attr' : { 'class' : 'form-control' } }) }}
+							</div>
+						</div>
+					</div>
+				</div>
+			
+				<div class="row">
+					<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+						<div class="form-group">
+							<div class="col-sm-6 control-label">
+								{{ form_label(form.gamme) }}
+							</div>
+							<div class="col-sm-6">
+								{{ form_widget(form.gamme, { 'attr' : { 'class' : 'form-control' } }) }}
 							</div>
 						</div>
 					</div>
@@ -31,13 +70,11 @@
 				<div class="row">
 					<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
 						<div class="form-group">
-							<label for="selectModele" class="col-sm-6 control-label">Selection d'un modèle</label>
+							<div class="col-sm-6 control-label">
+								{{ form_label(form.modele) }}
+							</div>
 							<div class="col-sm-6">
-								<select class="form-control" id="selectModele" name="selectModele">
-									{% for modele in modeleList %}
-										<option value="{{ modele.id }}">{{ modele.nameModele }}</option>
-									{% endfor %}
-								</select>
+								{{ form_widget(form.modele, { 'attr' : { 'class' : 'form-control' } }) }}
 							</div>
 						</div>
 					</div>
@@ -48,35 +85,29 @@
 					
 					<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" id="divSelectModele" style="display: none">
 						<div class="form-group">
-							<label for="selectRemplissage" class="col-sm-4 control-label">Type de remplissage</label>
-							<div class="col-sm-4">
-								<select class="form-control" id="selectRemplissage" name="selectRemplissage">
-									{% for remplissage in remplissageList %}
-										<option value="{{ remplissage.id }}">{{ remplissage.nameRemplissage }}</option>
-									{% endfor %}
-								</select>
+							<div class="col-sm-6 control-label">
+								{{ form_label(form.modeleName.remplissage) }}
+							</div>
+							<div class="col-sm-6">
+								{{ form_widget(form.modeleName.remplissage, { 'attr' : { 'class' : 'form-control' } }) }}
 							</div>
 						</div>
 						
 						<div class="form-group">
-							<label for="selectFinitionInt" class="col-sm-4 control-label">Finition intérieure</label>
-							<div class="col-sm-4">
-								<select class="form-control" id="selectFinitionInt" name="selectFinitionInt">
-									{% for finitionInt in finitionIntList %}
-										<option value="{{ finitionInt.id }}">{{ finitionInt.nameFinition }}</option>
-									{% endfor %}
-								</select>
+							<div class="col-sm-6 control-label">
+								{{ form_label(form.modeleName.finitionInterieur) }}
+							</div>
+							<div class="col-sm-6">
+								{{ form_widget(form.modeleName.finitionInterieur, { 'attr' : { 'class' : 'form-control' } }) }}
 							</div>
 						</div>
 						
 						<div class="form-group">
-							<label for="selectFinitionInt" class="col-sm-4 control-label">Finition extérieure</label>
-							<div class="col-sm-4">
-								<select class="form-control" id="selectFinitionInt" name="selectFinitionInt">
-									{% for finitionExt in finitionExtList %}
-										<option value="{{ finitionExt.id }}">{{ finitionExt.nameFinition }}</option>
-									{% endfor %}
-								</select>
+							<div class="col-sm-6 control-label">
+								{{ form_label(form.modeleName.finitionExterieur) }}
+							</div>
+							<div class="col-sm-6">
+								{{ form_widget(form.modeleName.finitionExterieur, { 'attr' : { 'class' : 'form-control' } }) }}
 							</div>
 						</div>
 					</div>
@@ -85,13 +116,11 @@
 				<div class="row">
 					<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
 						<div class="form-group">
-							<label for="selectCoupe" class="col-sm-6 control-label">Selection de la coupe de principe</label>
+							<div class="col-sm-6 control-label">
+								{{ form_label(form.coupe) }}
+							</div>
 							<div class="col-sm-6">
-								<select class="form-control" id="selectCoupe" name="selectCoupe">
-									{% for coupe in coupeList %}
-										<option value="{{ coupe.id }}">{{ coupe.nameCoupe }}</option>
-									{% endfor %}
-								</select>
+								{{ form_widget(form.coupe, { 'attr' : { 'class' : 'form-control' } }) }}
 							</div>
 						</div>
 					</div>
@@ -100,13 +129,11 @@
 				<div class="row">
 					<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
 						<div class="form-group">
-							<label for="selectModule" class="col-sm-6 control-label">Selection des modules</label>
+							<div class="col-sm-6 control-label">
+								{{ form_label(form.module) }}
+							</div>
 							<div class="col-sm-6">
-								<select class="form-control" id="selectModule" name="selectModule">
-									{% for module in moduleList %}
-										<option id="selectedModule{{module.id}}" value="{{ module.id }}">{{ module.nameModule }}</option>
-									{% endfor %}
-								</select>
+								{{ form_widget(form.module, { 'attr' : { 'class' : 'form-control' } }) }}
 							</div>
 						</div>
 					</div>
@@ -116,42 +143,60 @@
 					</div>					
 					<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" id="divModule" style="display: none">
 						<div class="form-group">
-							<label for="section" class="col-sm-4 control-label">Section</label>
-							<div class="col-sm-4">
-								<input type="text" class="form-control" id="section" name="section" />
+							<div class="col-sm-6 control-label">
+								{{ form_label(form.moduleName.section) }}
+							</div>
+							<div class="col-sm-6">
+								{{ form_widget(form.moduleName.section, { 'attr' : { 'class' : 'form-control' } }) }}
 							</div>
 						</div>
 						
 						<div class="form-group">
-							<label for="longueur" class="col-sm-4 control-label">Longueur</label>
-							<div class="col-sm-4">
-								<input type="text" class="form-control" id="longueur" name="longueur" />
+							<div class="col-sm-6 control-label">
+								{{ form_label(form.moduleName.longueur) }}
+							</div>
+							<div class="col-sm-6">
+								{{ form_widget(form.moduleName.longueur, { 'attr' : { 'class' : 'form-control' } }) }}
 							</div>
 						</div>
 						
 						<div class="form-group">
-							<label for="angleEntrant" class="col-sm-4 control-label">Angle entrant</label>
-							<div class="col-sm-4">
-								<input type="text" class="form-control" id="angleEntrant" name="angleEntrant" />
+							<div class="col-sm-6 control-label">
+								{{ form_label(form.moduleName.angleEntrant) }}
+							</div>
+							<div class="col-sm-6">
+								{{ form_widget(form.moduleName.angleEntrant, { 'attr' : { 'class' : 'form-control' } }) }}
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="angleSortant" class="col-sm-4 control-label">Angle sortant</label>
-							<div class="col-sm-4">
-								<input type="text" class="form-control" id="angleSortant" name="angleSortant" />
+							<div class="col-sm-6 control-label">
+								{{ form_label(form.moduleName.angleSortant) }}
+							</div>
+							<div class="col-sm-6">
+								{{ form_widget(form.moduleName.angleSortant, { 'attr' : { 'class' : 'form-control' } }) }}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+						<div class="form-group">
+							<div class="col-sm-6 control-label">
+								{{ form_label(form.amount) }}
+							</div>
+							<div class="col-sm-6">
+								{{ form_widget(form.amount, { 'attr' : { 'class' : 'form-control' } }) }}
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="row" style="margin-top: 30px">
-					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
 					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-						<button class="btn btn-success btn-sm" href="{{ path('save_devis') }}" style="width: 100%">Envoyer pour validation</button>
+							{{ form_row(form.save, { 'attr' : { 'class' : 'btn btn-success btn-sm' } }) }}
+							{{ form_end(form) }}
 					</div>
 				</div>
-			</form>
-		</div>
-		
+		</div>		
 		<script>
 			$(document).ready(function(){
 				$('#btnSelectModele').click(function(){

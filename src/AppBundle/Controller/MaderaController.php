@@ -12,6 +12,7 @@ use Symfony\Component\Translation\MessageSelector;
 
 
 use AppBundle\Entity\Devis;
+use AppBundle\Entity\Modele;
 use AppBundle\Form\DevisType;
 use AppBundle\Manager\ModeleManager;
 
@@ -51,9 +52,15 @@ class MaderaController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $devis = $em->getRepository('AppBundle:Devis')->findOneById($id);
+        $projet = null;
+
+        if (!empty($devis->getProjet())){
+            $projet = $em->getRepository('AppBundle:Projet')->findOneById($devis->getProjet());
+        }
 
         return $this->render('AppBundle:Madera:devis.html.twig', array(
-            'devis' => $devis
+            'devis' => $devis,
+            'projet' => $projet
             )
         );
 
@@ -68,7 +75,6 @@ class MaderaController extends Controller
     public function createDevisAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $translator = new Translator('fr_FR', new MessageSelector());
 
         $devis = new Devis;
 
@@ -77,14 +83,32 @@ class MaderaController extends Controller
 
             if ($form->isSubmitted() && $form->isValid()) {
 
-                $devis = $form->getData();
+                $modele = $em->getRepository('AppBundle:Modele')->findOneById($form->getData()->getModele()->getId());
 
-                var_dump($devis);die();
+                $randRef = rand(10000, 99999);
+                $devis->setRefDevis($randRef);
+                $devis->setNameDevis($form->getData()->getNameDevis());
+                $devis->setDateDevis(new \DateTime("now"));
+                $devis->setClient($form->getData()->getClient());
+                $devis->setAmount($form->getData()->getAmount());
+                $devis->setValidatedDateDevis($form->getData()->getDateDevis());
+                $devis->setGamme($form->getData()->getGamme());
+                $devis->setModele($form->getData()->getModele());
+                $devis->setCoupe($form->getData()->getCoupe());
+                $devis->setModule($form->getData()->getModule());
 
-                return $this->redirectToRoute('task_success');
+                $modele->setRemplissage($form->getData()->getModele()->getRemplissage());
+                $modele->setFinitionInterieur($form->getData()->getModele()->getFinitionInterieur());
+                $modele->setFinitionExterieur($form->getData()->getModele()->getFinitionExterieur());
+
+                $em->persist($devis);
+                $em->persist($modele);
+                $em->flush();
+
+                return $this->redirectToRoute('show_devis', array('id' => $devis->getId()));
             }
 
-        return $this->render('AppBundle:Madera:subscription.html.twig', array(
+        return $this->render('AppBundle:Madera:newDevis.html.twig', array(
             'form' => $form->createView(),
         ));
 

@@ -36,6 +36,7 @@ class DevisType extends AbstractType
     {
         $modele = $this->modeleManager->getNameModele();
         $module = $this->moduleManager->getNameModule();
+        // var_dump($module);die();
         $builder->add('nameDevis');
         $builder->add('dateDevis', DateType::class, array(
             'widget'=> 'single_text',

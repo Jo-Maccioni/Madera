@@ -27,7 +27,7 @@ class ModeleManager
         $modeleList = $this->em->getRepository('AppBundle:Modele')->findAll();
 
         foreach ($modeleList as $modele) {
-            $modeleIdAndName[$modele->getNameModele()] = $modele->getId();
+            $modeleIdAndName[$modele->getNameModele()] = $modele;
         }
         // var_dump($modeleIdAndName);die();
         return $modeleIdAndName;    

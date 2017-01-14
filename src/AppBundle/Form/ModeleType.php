@@ -8,19 +8,21 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 use AppBundle\Form\RemplissageType;
-use AppBundle\Form\FinitionType;
+use AppBundle\Form\FinitionInterieurType;
 
 class ModeleType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        // $modele = $options['data'];
-        // $builder->add('nameModele');
-        // $builder->add('nameModele', ChoiceType::class, array(
-        //     'choices' => array('yes', 'no'),
-        // ));
-        $builder->add('remplissage', RemplissageType::class);
-        $builder->add('finition', FinitionType::class);
+        $builder->add('remplissage', EntityType::class, array(
+            'class'=> 'AppBundle:Remplissage',
+            ));
+        $builder->add('finitionInterieur', EntityType::class, array(
+            'class'=> 'AppBundle:FinitionInterieur',
+            ));
+        $builder->add('finitionExterieur', EntityType::class, array(
+            'class'=> 'AppBundle:FinitionExterieur',
+            ));
     }
 
     public function configureOptions(OptionsResolver $resolver)

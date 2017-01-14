@@ -10,7 +10,6 @@ class ModuleType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nameModule');
         $builder->add('section');
         $builder->add('longueur');
         $builder->add('angleEntrant');

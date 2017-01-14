@@ -1,24 +1,22 @@
 <?php
 namespace AppBundle\Form;
 
-use AppBundle\Entity\Finition;
+use AppBundle\Entity\FinitionInterieur;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class FinitionType extends AbstractType
+class FinitionInterieurType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nameFinition');
-        $builder->add('finitionINT');
-        $builder->add('finitionEXT');
+        $builder->add('nameFinitionInterieur');
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => Finition::class,
+            'data_class' => FinitionInterieur::class,
         ));
     }
 }

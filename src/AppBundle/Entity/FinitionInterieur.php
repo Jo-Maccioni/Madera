@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Finition
  *
- * @ORM\Table(name="finition")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\FinitionRepository")
+ * @ORM\Table(name="finition_interieur")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\FinitionInterieurRepository")
  */
-class Finition
+class FinitionInterieur
 {
     /**
      * @var int
@@ -31,17 +31,15 @@ class Finition
     /**
      * @var string
      *
-     * @ORM\Column(name="finition_int", type="string", length=255, nullable=true)
+     * @ORM\Column(name="nameFinitionInterieur", type="string", length=255, nullable=true)
      */
-    private $finitionINT;
+    private $nameFinitionInterieur;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="finition_ext", type="string", length=255, nullable=true)
-     */
-    private $finitionEXT;
 
+    public function __toString()
+    {
+        return (string) $this->getNameFinitionInterieur();
+    }
 
     /**
      * Get id
@@ -78,50 +76,26 @@ class Finition
     }
 
     /**
-     * Set finitionINT
+     * Set nameFinitionInterieur
      *
-     * @param string $finitionINT
+     * @param string $nameFinitionInterieur
      *
-     * @return Finition
+     * @return FinitionInterieur
      */
-    public function setFinitionINT($finitionINT)
+    public function setNameFinitionInterieur($nameFinitionInterieur)
     {
-        $this->finitionINT = $finitionINT;
+        $this->nameFinitionInterieur = $nameFinitionInterieur;
 
         return $this;
     }
 
     /**
-     * Get finitionINT
+     * Get nameFinitionInterieur
      *
      * @return string
      */
-    public function getFinitionINT()
+    public function getNameFinitionInterieur()
     {
-        return $this->finitionINT;
-    }
-
-    /**
-     * Set finitionEXT
-     *
-     * @param string $finitionEXT
-     *
-     * @return Finition
-     */
-    public function setFinitionEXT($finitionEXT)
-    {
-        $this->finitionEXT = $finitionEXT;
-
-        return $this;
-    }
-
-    /**
-     * Get finitionEXT
-     *
-     * @return string
-     */
-    public function getFinitionEXT()
-    {
-        return $this->finitionEXT;
+        return $this->nameFinitionInterieur;
     }
 }

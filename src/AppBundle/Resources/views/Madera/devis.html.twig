@@ -10,11 +10,52 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<h3>Récapitulatif du devis n° {% if devis.refDevis is not empty %}{{ devis.refDevis }}{% endif %}</h3>
 					
-					Référence du projet lié à ce devis :  A REVOIR <br />
-					Gamme : A REVOIR<br />
-					<b>Modèle A REVOIR</b><br />
-					type de remplissage : remplissage 1 A REVOIR<br />
-					Finition A REVOIR 
+					{% if projet is not empty %}
+						Référence du projet lié à ce devis :  {{ projet.refProjet }} - {{ projet.nameProjet }} <br>
+					{% endif %}
+					{% if devis.validatedDateDevis is not empty %}
+						Date de validité du devis : {{ devis.validatedDateDevis|date('d-m-Y') }} <br>
+					{% endif %}
+					{% if devis.client is not empty %}
+						Client : {{ devis.client.nomClient }} {{ devis.client.prenomClient }} <br>
+						{{ devis.client.adresse }} {{ devis.client.ville }} {{ devis.client.codePostal }} <br>
+					{% endif %}
+
+					<h4>Récapitulatif du produit</h4>
+
+					<table class="table table-bordered">
+						<tr>
+							<th class="text-center" style="vertical-align:middle;" rowspan="2">Gamme</th>
+							<th class="text-center" colspan="3">Modèle</th>
+							<th class="text-center" style="vertical-align:middle;" rowspan="2">Coupe</th>
+							<th class="text-center" colspan="4">Module</th>
+						</tr>
+						<tr>
+							<th class="text-center">Remplissage</th>
+							<th class="text-center">Finition Intérieur</th>
+							<th class="text-center">Finition Extérieur</th>
+							<th class="text-center">Section</th>
+							<th class="text-center">Longueur</th>
+							<th class="text-center">Angle Sortant</th>
+							<th class="text-center">Angle Entrant</th>
+						</tr>
+
+						<tr>
+							<td class="text-center" style="vertical-align:middle;" rowspan="2">{% if devis.gamme is not empty %} {{ devis.gamme.nameGamme }} {% endif %}</td>
+							<td class="text-center" colspan="3">{% if devis.modele is not empty %} {{ devis.modele.nameModele }} {% endif %}</td>
+							<td class="text-center" style="vertical-align:middle;" rowspan="2">{% if devis.coupe is not empty %} {{ devis.coupe.nameCoupe }} {% endif %}</td>
+							<td class="text-center" colspan="4">{% if devis.module is not empty %} {{ devis.module.nameModule }} {% endif %}</td>
+						</tr>
+						<tr>
+							<td class="text-center">{% if devis.modele.remplissage is not empty %} {{ devis.modele.remplissage.nameRemplissage }} {% endif %}</td>
+							<td class="text-center">{% if devis.modele.finitionInterieur is not empty %} {{ devis.modele.finitionInterieur.nameFinitionInterieur }} {% endif %}</td>
+							<td class="text-center">{% if devis.modele.finitionExterieur is not empty %} {{ devis.modele.finitionExterieur.nameFinitionExterieur }} {% endif %}</td>
+							<td class="text-center">{% if devis.module.section is not empty %} {{ devis.module.section }} {% endif %}</td>
+							<td class="text-center">{% if devis.module.longueur is not empty %} {{ devis.module.longueur }} {% endif %}</td>
+							<td class="text-center">{% if devis.module.angleSortant is not empty %} {{ devis.module.angleSortant }} {% endif %}</td>
+							<td class="text-center">{% if devis.module.angleEntrant is not empty %} {{ devis.module.angleEntrant }} {% endif %}</td>
+						</tr>
+					</table>
 				</div>
 			</div>
 		</div>

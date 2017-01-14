@@ -35,6 +35,10 @@ class Remplissage
      */
     private $nameRemplissage;
 
+    public function __toString()
+    {
+        return (string) $this->getNameRemplissage();
+    }
 
     /**
      * Get id
