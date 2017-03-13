@@ -113,6 +113,26 @@ class MaderaController extends Controller
         ));
 
     }
+
+    /**
+    * @param Devis $entity
+    *
+    * @Route("/{id}/delete", requirements={"id" = "\d+"}, name="delete_devis")
+    * @return RedirectResponse
+    *
+    */
+    public function deleteDevisAction($id, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $devis = $em->getRepository('AppBundle:Devis')->findOneById($id);
+        if (!empty($devis)){
+            $em->remove($devis);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('homepage');
+
+    }
 }
 
 

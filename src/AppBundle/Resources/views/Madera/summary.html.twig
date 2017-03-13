@@ -30,6 +30,7 @@
 									<th>Montant</th>
 									<th>Date de validité</th>
 									<th></th>
+									<th></th>
 								</tr>
 							{% for devis in devisList %}
 								<tr>
@@ -38,7 +39,8 @@
 									<td>{% if devis.client.prenomClient is not empty %}{{ devis.client.prenomClient }} {{ devis.client.nomClient }}{% endif %}</td>
 									<td>{% if devis.amount is not empty %}{{ devis.amount|number_format(2, ',', ' ') }} €{% endif %}</td>
 									<td>{% if devis.validatedDateDevis is not empty %}{{ devis.validatedDateDevis|date("m/d/Y") }}{% endif %}</td>
-									<td><a class="fa fa-pencil" href="{{ path('show_devis', {'id': devis.id }) }}"></a></td>
+									<td><a class="fa fa-pencil" style="color:#336699" href="{{ path('show_devis', {'id': devis.id }) }}"></a></td>
+									<td><a class="fa fa-close" onclick="return confirm('Etes-vous sûr de vouloir supprimer le devis {{ devis.refDevis }} ?')" style="color:red;" href="{{ path('delete_devis', {'id': devis.id }) }}"></a></td>
 								</tr>
 							{% endfor %}
 						</table>
