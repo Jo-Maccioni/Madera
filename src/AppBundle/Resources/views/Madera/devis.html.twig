@@ -56,6 +56,9 @@
 							<td class="text-center">{% if devis.module.angleEntrant is not empty %} {{ devis.module.angleEntrant }} {% endif %}</td>
 						</tr>
 					</table>
+					<div>
+						<h2>TOTAL du devis : {% if devis.amount is not empty %} {{ devis.amount|number_format(2, ',', ' ') }} € {% endif %} </h2>
+					</div>
 				</div>
 			</div>
 		</div>

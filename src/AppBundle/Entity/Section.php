@@ -35,7 +35,10 @@ class Section
      */
     private $nameSection;
 
-
+    public function __toString()
+    {
+        return (string) $this->getNameSection();
+    }
     /**
      * Get id
      *

@@ -27,7 +27,7 @@ class ModuleManager
         $moduleList = $this->em->getRepository('AppBundle:Module')->findAll();
 
         foreach ($moduleList as $module) {
-            $moduleIdAndName[$module->getNameModule()] = $module;
+            $moduleIdAndName[$module->getNameModule()] = $module->getNameModule();
         }
         // var_dump($modeleIdAndName);die();
         return $moduleIdAndName;    

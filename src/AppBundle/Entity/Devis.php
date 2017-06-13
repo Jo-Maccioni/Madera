@@ -73,7 +73,7 @@ class Devis
     /**
      * @var integer
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Modele")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Modele", cascade={"persist"})
      * @ORM\JoinColumn(name="modele_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     protected $modele;
@@ -89,7 +89,7 @@ class Devis
     /**
      * @var integer
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Module")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Module", cascade={"persist"})
      * @ORM\JoinColumn(name="module_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     protected $module;

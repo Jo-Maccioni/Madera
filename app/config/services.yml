@@ -18,8 +18,17 @@ services:
             - {name: manager.service}
     app_bundle.form.devis:
         class: AppBundle\Form\DevisType
+        tags:
+            - {name: form.type}
+    app_bundle.form.modele:
+        class: AppBundle\Form\ModeleType
         arguments: 
             - "@app_bundle.manager.modele"
+        tags:
+            - {name: form.type}
+    app_bundle.form.module:
+        class: AppBundle\Form\ModuleType
+        arguments: 
             - "@app_bundle.manager.module"
         tags:
             - {name: form.type}

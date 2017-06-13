@@ -8,7 +8,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-					<a class="btn btn-success" href="newProject.php" style="width: 100%">Créer un projet</a>
+					<a class="btn btn-success" href="{{ path('building') }}" style="width: 100%">Créer un projet</a>
 				</div>
 				
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -22,13 +22,13 @@
 					
 					<div class="table-responsive">
 						<table class="table table-hover">
-
 								<tr>
 									<th>Référence</th>
 									<th>Date de création</th>
 									<th>Client</th>
 									<th>Montant</th>
 									<th>Date de validité</th>
+									<th></th>
 									<th></th>
 									<th></th>
 								</tr>
@@ -39,7 +39,8 @@
 									<td>{% if devis.client.prenomClient is not empty %}{{ devis.client.prenomClient }} {{ devis.client.nomClient }}{% endif %}</td>
 									<td>{% if devis.amount is not empty %}{{ devis.amount|number_format(2, ',', ' ') }} €{% endif %}</td>
 									<td>{% if devis.validatedDateDevis is not empty %}{{ devis.validatedDateDevis|date("m/d/Y") }}{% endif %}</td>
-									<td><a class="fa fa-pencil" style="color:#336699" href="{{ path('show_devis', {'id': devis.id }) }}"></a></td>
+									<td><a class="fa fa-eye" style="color:#336699" href="{{ path('show_devis', {'id': devis.id }) }}"></a></td>
+									<td><a class="fa fa-pencil" style="color:#336699" href="{{ path('edit_devis', {'id': devis.id }) }}"></a></td>
 									<td><a class="fa fa-close" onclick="return confirm('Etes-vous sûr de vouloir supprimer le devis {{ devis.refDevis }} ?')" style="color:red;" href="{{ path('delete_devis', {'id': devis.id }) }}"></a></td>
 								</tr>
 							{% endfor %}

@@ -66,6 +66,82 @@ class MaderaController extends Controller
 
     }
 
+
+    /**
+    *
+    * @Route("/building", name="building")
+    * @return RedirectResponse
+    *
+    */
+    public function buildingAction()
+    {
+        return $this->render('AppBundle:Madera:building.html.twig');
+
+    }
+
+
+    /**
+    * @param Devis $entity
+    *
+    * @Route("/{id}/edit", requirements={"id" = "\d+"}, name="edit_devis")
+    * @return RedirectResponse
+    *
+    */
+    public function editDevisAction($id, Request $request)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $devis = $em->getRepository('AppBundle:Devis')->findOneById($id);
+
+
+        $form = $this->createForm(DevisType::class, $devis);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+                $modele = $em->getRepository('AppBundle:Modele')->findOneById($form->getData()->getModele()->getNameModele()->getId());
+                $module = $em->getRepository('AppBundle:Module')->findOneByNameModule($form->getData()->getModule()->getNameModule());
+
+                if (!empty($modele)){
+                    $modele->setRemplissage($form->getData()->getModele()->getRemplissage());
+                    $modele->setFinitionInterieur($form->getData()->getModele()->getFinitionInterieur());
+                    $modele->setFinitionExterieur($form->getData()->getModele()->getFinitionExterieur());
+                }
+                $em->persist($modele);
+
+                if (!empty($module)){
+                    $module->setRefModule($form->getData()->getModule()->getRefModule());
+                    $module->setSection($form->getData()->getModule()->getSection());
+                    $module->setLongueur($form->getData()->getModule()->getLongueur());
+                    $module->setAngleEntrant($form->getData()->getModule()->getAngleEntrant());
+                    $module->setAngleSortant($form->getData()->getModule()->getAngleSortant());
+                } 
+                $em->persist($module);
+                
+                $devis->setRefDevis($form->getData()->getRefDevis());
+                $devis->setNameDevis($form->getData()->getNameDevis());
+                $devis->setDateDevis(new \DateTime("now"));
+                $devis->setClient($form->getData()->getClient());
+                $devis->setAmount($form->getData()->getAmount());
+                $devis->setValidatedDateDevis($form->getData()->getDateDevis());
+                $devis->setGamme($form->getData()->getGamme());
+                $devis->setCoupe($form->getData()->getCoupe());
+                $devis->setModule($module);
+                $devis->setModele($modele);
+
+                $em->persist($devis);
+                $em->flush();
+
+                return $this->redirectToRoute('show_devis', array('id' => $devis->getId()));
+
+        }
+
+        return $this->render('AppBundle:Madera:editDevis.html.twig', array(
+            'form' => $form->createView(),
+            'devis' => $devis
+        ));
+
+    }
+
     /**
     *
     * @Route("/create-devis", name="create_devis")
@@ -79,12 +155,29 @@ class MaderaController extends Controller
         $devis = new Devis;
 
         $form = $this->createForm(DevisType::class);
-            $form->handleRequest($request);
+        $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
+                $modele = $em->getRepository('AppBundle:Modele')->findOneById($form->getData()->getModele()->getNameModele()->getId());
+                $module = $em->getRepository('AppBundle:Module')->findOneByNameModule($form->getData()->getModule()->getNameModule());
 
-                $modele = $em->getRepository('AppBundle:Modele')->findOneById($form->getData()->getModele()->getId());
+                if (!empty($modele)){
+                    $modele->setRemplissage($form->getData()->getModele()->getRemplissage());
+                    $modele->setFinitionInterieur($form->getData()->getModele()->getFinitionInterieur());
+                    $modele->setFinitionExterieur($form->getData()->getModele()->getFinitionExterieur());
+                }
+                $em->persist($modele);
 
+                $randRefModule = rand(10000, 99999);
+                if (!empty($module)){
+                    $module->setRefModule(strval($randRefModule));
+                    $module->setSection($form->getData()->getModule()->getSection());
+                    $module->setLongueur($form->getData()->getModule()->getLongueur());
+                    $module->setAngleEntrant($form->getData()->getModule()->getAngleEntrant());
+                    $module->setAngleSortant($form->getData()->getModule()->getAngleSortant());
+                } 
+                $em->persist($module);
+                
                 $randRef = rand(10000, 99999);
                 $devis->setRefDevis($randRef);
                 $devis->setNameDevis($form->getData()->getNameDevis());
@@ -93,16 +186,11 @@ class MaderaController extends Controller
                 $devis->setAmount($form->getData()->getAmount());
                 $devis->setValidatedDateDevis($form->getData()->getDateDevis());
                 $devis->setGamme($form->getData()->getGamme());
-                $devis->setModele($form->getData()->getModele());
                 $devis->setCoupe($form->getData()->getCoupe());
-                $devis->setModule($form->getData()->getModule());
-
-                $modele->setRemplissage($form->getData()->getModele()->getRemplissage());
-                $modele->setFinitionInterieur($form->getData()->getModele()->getFinitionInterieur());
-                $modele->setFinitionExterieur($form->getData()->getModele()->getFinitionExterieur());
+                $devis->setModule($module);
+                $devis->setModele($modele);
 
                 $em->persist($devis);
-                $em->persist($modele);
                 $em->flush();
 
                 return $this->redirectToRoute('show_devis', array('id' => $devis->getId()));
